@@ -1,5 +1,9 @@
-package produtopackage;
+package interfacepackage;
 
+import produtopackage.ProdutoDAO;
+import produtopackage.Produto;
+
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,56 +15,76 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+
 public class JConsultaRemove extends JFrame{
 
+	private JTextField FieldID;
+	private JTextArea AreaList;
+	
 	public JConsultaRemove() {
+		
+		setTitle("Consulta/Remover");
 		setSize(400,300);
 		setLayout(new FlowLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		//// Painel das PK dos produtos !!
-		JPanel ID_P= new JPanel();
-		JButton back= new JButton("Voltar");
-		JButton remove= new JButton("Remover");
-		JButton ImprimirLista = new JButton("Imprimir Lista");
-		JButton ativar = new JButton("Consultar");
-		JLabel Produto = new JLabel("ID Produto");
-		final JTextField FieldID = new JTextField(15);
-		ID_P.add(new JLabel("ID do Produto: "));
-	    final JTextArea area = new JTextArea(10,30);
-		add(Produto);
-		add(FieldID);
-		add(ativar);
-		add(remove);
-		add(area);
-		add(back);
-		add(ImprimirLista);
+		
+		JButton Bback= new JButton("Voltar");
+		JButton Bremove= new JButton("Remover");
+		JButton Bimpress = new JButton("Imprimir");
+		JButton Bconsult = new JButton("Consultar");
+		
+		JPanel PanelButtons = new JPanel();
+		JPanel PanelFieldLabel = new JPanel();
+		JPanel AlmostSuperPanel = new JPanel(new BorderLayout());
+		JPanel SuperPanel = new JPanel(new BorderLayout());
+		
+		JLabel LabelID = new JLabel("ID Produto");
+		
+		this.FieldID = new JTextField(15);
+	    this.AreaList= new JTextArea(10,30);
+
+	    PanelButtons.add(Bback);
+	    PanelButtons.add(Bimpress);
+	    PanelButtons.add(Bconsult);
+	    PanelButtons.add(Bremove);
+	    PanelFieldLabel.add(LabelID);
+	    PanelFieldLabel.add(FieldID);
+	    AlmostSuperPanel.add(PanelFieldLabel,BorderLayout.CENTER);
+	    AlmostSuperPanel.add(PanelButtons,BorderLayout.SOUTH);
+	    SuperPanel.add(AlmostSuperPanel,BorderLayout.CENTER);
+	    SuperPanel.add(AreaList,BorderLayout.SOUTH);
+	    
+	    
+	    add(SuperPanel);
+	    //add(AlmostSuperPanel);
 		setVisible(true);
-		//Gatilho de consulta não consegui de jeito nenhum por a linha 28 dentro do gatilho do JButton, perguntar depois pra sergio, porque o comp reclama de variavel local e so consigo se for de final!!
-		ativar.addActionListener(new ActionListener() {
+			
+		Bconsult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				String gettxt=FieldID.getText();
-				area.setText(gettxt);
+				AreaList.setText(gettxt);
 				ProdutoDAO dao = new ProdutoDAO();
 				Produto p = dao.selectProduto(Integer.parseInt(gettxt));
-				area.setText("Produto: "+p.getNome()+"\nID: "+p.getID_Prod()+"\nCategoria: "+p.getCategoria()+"\nPreço: "+p.getPreço()+"\nUsado: "+p.isUsado());
+				AreaList.setText("Produto: "+p.getNome()+"\nID: "+p.getID_Prod()+"\nCategoria: "+p.getCategoria()+"\nPreço: "+p.getPreço()+"\nUsado: "+p.isUsado());
 		
 			}
 		});
-		back.addActionListener(new ActionListener() {
+		
+		Bback.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				SwingAPI Main = new SwingAPI();
+				new JInitial();
 				dispose();
 			}
 		});
 		
-		ImprimirLista.addActionListener(new ActionListener() {
+		Bimpress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				ProdutoDAO dao = new ProdutoDAO();
-				area.setText(dao.listProduto().toString());		
+				//new JImpress();
+				new JImpressTable();	
 			}
 		});
 		
-		remove.addActionListener(new ActionListener() {
+		Bremove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				String gettxt=FieldID.getText();
 				ProdutoDAO dao = new ProdutoDAO();

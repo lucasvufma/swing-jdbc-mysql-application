@@ -1,5 +1,7 @@
-package produtopackage;
+package interfacepackage;
 
+import produtopackage.ProdutoDAO;
+import produtopackage.Produto;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -12,18 +14,25 @@ import javax.swing.JTextField;
 
 public class JUpdateInsert extends JFrame {
 	public JUpdateInsert() {
+		
 		setLayout(new FlowLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(450,450);
 		setTitle("Update e Inserção de Dados");
+		
+		
 		JButton Insert = new JButton("Inserir");
 		JButton Update = new JButton("Update");
 		JButton back = new JButton("Voltar");
+		
+		
 		JLabel Nome = new JLabel("Nome do Produto");
 		JLabel ID = new JLabel("ID Produto");
 		JLabel Categoria = new JLabel("Categoria");
 		JLabel Preço = new JLabel("Preço");
 		JLabel Usado = new JLabel("Usado");
+		
+		
 		final JTextField FieldN = new JTextField(40);
 		final JTextField FieldI = new JTextField(40);
 		final JTextField FieldC = new JTextField(40);
@@ -31,7 +40,9 @@ public class JUpdateInsert extends JFrame {
 		final JTextField FieldU = new JTextField(40);
 		
 		add(Nome);add(FieldN);add(ID);add(FieldI);add(Categoria);add(FieldC);add(Preço);add(FieldP);add(Usado);add(FieldU);add(Insert);add(Update);add(back);
+		
 		setVisible(true);
+		
 		Insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				String Nome=FieldI.getText();
@@ -46,7 +57,7 @@ public class JUpdateInsert extends JFrame {
 		
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				new SwingAPI();
+				new JInitial();
 				dispose();
 			}
 		});
