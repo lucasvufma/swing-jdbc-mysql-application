@@ -42,9 +42,9 @@ public class ProdutoTableModel extends AbstractTableModel{
 		case 2:
 			return p.getCategoria();
 		case 3:
-			return p.isUsado();
+			return p.getUsado();
 		case 4:
-			return p.getID_Prod();
+			return p.getId_prod();
 	
 		default:
 			throw new IndexOutOfBoundsException ("");			
@@ -60,7 +60,7 @@ public class ProdutoTableModel extends AbstractTableModel{
 	}
 	
 	public void Filtro(int ID) {
-			selecionados=produtos.stream().filter((prod)->prod.getID_Prod() == ID)
+			selecionados=produtos.stream().filter((prod)->prod.getId_prod() == ID)
 					.collect(Collectors.toList());
 			fireTableDataChanged();
 	}

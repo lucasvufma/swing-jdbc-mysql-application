@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
+import servicespackage.ConnectionFactory;
+
 public class ProdutoDAO {
 	private Connection conn;
 	public ProdutoDAO() {
@@ -29,7 +31,7 @@ public class ProdutoDAO {
 			stmt.setString(1,p.getNome());
 			stmt.setDouble(2,p.getPreço());
 			stmt.setString(3,p.getCategoria());
-			stmt.setBoolean(4,p.isUsado());
+			stmt.setBoolean(4,p.getUsado());
 			
 			stmt.execute();
 			stmt.close();
@@ -52,7 +54,7 @@ public class ProdutoDAO {
 				prodQUERY.setPreço(rs.getDouble("Preço"));
 				prodQUERY.setCategoria(rs.getString("Categoria"));
 				prodQUERY.setUsado(rs.getBoolean("Usado"));
-				prodQUERY.setID_Prod(rs.getInt("ID_Prod"));
+				prodQUERY.setId_prod(rs.getInt("ID_Prod"));
 			}
 			return prodQUERY;
 			
@@ -104,7 +106,7 @@ public class ProdutoDAO {
 			while (rs.next()) {
 				Produto prodQUERY = new Produto();
 				prodQUERY.setNome(rs.getString("Nome"));
-				prodQUERY.setID_Prod(rs.getInt("ID_Prod"));
+				prodQUERY.setId_prod(rs.getInt("ID_Prod"));
 				prodQUERY.setPreço(rs.getDouble("Preço"));
 				prodQUERY.setCategoria(rs.getString("Categoria"));
 				prodQUERY.setUsado(rs.getBoolean("Usado"));

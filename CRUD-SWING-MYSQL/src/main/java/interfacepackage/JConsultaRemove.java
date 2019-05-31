@@ -35,6 +35,7 @@ public class JConsultaRemove extends JFrame{
 		JButton Bremove= new JButton("Remover");
 		JButton Bimpress = new JButton("Imprimir Todos");
 		JButton Bconsult = new JButton("Consultar/Filtrar");
+		JButton Bteste = new JButton("Generic Table Model");
 		
 		JPanel PanelButtons = new JPanel();
 		JPanel PanelFieldLabel = new JPanel();
@@ -56,6 +57,7 @@ public class JConsultaRemove extends JFrame{
 	    PanelButtons.add(Bimpress);
 	    PanelButtons.add(Bconsult);
 	    PanelButtons.add(Bremove);
+	    PanelButtons.add(Bteste);
 	    PanelFieldLabel.add(LabelID);
 	    PanelFieldLabel.add(FieldID);
 	    AlmostSuperPanel.add(PanelFieldLabel,BorderLayout.CENTER);
@@ -67,6 +69,12 @@ public class JConsultaRemove extends JFrame{
 	    
 	    add(SuperPanel);
 		setVisible(true);
+		Bteste.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				new GenericView();
+			}
+		});
+		
 			
 		Bconsult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -101,6 +109,8 @@ public class JConsultaRemove extends JFrame{
 				dao.removeProduto(Integer.parseInt(gettxt));
 			}
 		});
+		
+		
 		
 		
 	}

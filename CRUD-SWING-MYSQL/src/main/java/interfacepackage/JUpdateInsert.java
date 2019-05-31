@@ -69,6 +69,7 @@ public class JUpdateInsert extends JFrame {
 		AlmostSuperPanel1.add(PanelN,BorderLayout.NORTH);AlmostSuperPanel1.add(PanelI,BorderLayout.SOUTH);
 		AlmostSuperPanel2.add(PanelC,BorderLayout.NORTH);AlmostSuperPanel2.add(PanelP,BorderLayout.SOUTH);
 		AlmostSuperPanel3.add(AlmostSuperPanel1,BorderLayout.NORTH);
+		AlmostSuperPanel3.add(PanelU,BorderLayout.CENTER); // esse ta fora do padrão, depois arrumar ele
 		AlmostSuperPanel3.add(AlmostSuperPanel2,BorderLayout.SOUTH);
 		SuperPanel.add(AlmostSuperPanel3,BorderLayout.NORTH);
 		SuperPanel.add(PanelButtons,BorderLayout.SOUTH);
